@@ -1,0 +1,51 @@
+
+    @for (task of tasks(); track task._id) {
+        <mat-card>
+            <mat-card-title>
+                {{ task.title }}
+            </mat-card-title>
+            <mat-card-content>
+                {{ task.description }}
+            </mat-card-content>
+            <mat-card-actions>
+                <button mat-button (click)="onShowTask(task)">Show</button>
+                <button mat-button (click)="onUpdateTask(task)">Edit</button>
+            </mat-card-actions>
+        </mat-card>
+
+    }
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="input">title</label>
+            <mat-form-field>
+                <input formControlName="title" matInput placeholder="Input">
+                @if (form.get('title')?.invalid && form.get('title')?.touched) {
+                    <mat-error>Title is required</mat-error>
+                }
+            </mat-form-field>
+        </div>
+
+        <label for="textarea">description</label>
+        <div class="form-group">
+            <mat-form-field>
+                <textarea formControlName="description" matInput placeholder="Textarea"></textarea>
+                @if (form.get('description')?.invalid && form.get('description')?.touched) {
+                    <mat-error>Description is required</mat-error>
+                }
+            </mat-form-field>
+        </div>
+            
+        <label for="select">Complieted</label>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-select formControlName="completed" placeholder="Select">
+                <mat-option [value]="">Select</mat-option>
+                <mat-option [value]="true">Complieted</mat-option>
+                <mat-option [value]="false">To do</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <button type="submit" mat-raised-button color="primary">Submit</button>
+    </form>
