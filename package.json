@@ -1,0 +1,12 @@
+{
+  "name": "angularbasics",
+  "version": "1.0.0",
+  "scripts": {
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "e2e": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^15.10.0"
+  }
+}
